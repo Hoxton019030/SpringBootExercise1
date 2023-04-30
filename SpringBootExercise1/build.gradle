@@ -1,0 +1,57 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'org.Stasy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudAzureVersion', "5.0.0")
+	set('jspVersion', '2.3.5')
+	set('jstlVersion', '2.0')
+	set('jasperVersion', '9.0.53')
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+	// Jasper for JSP rendering
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+
+// https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:4.0.2'
+
+	implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
+
+	// https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
+	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.mysql:mysql-connector-j:8.0.31'
+
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+
+war {
+	webAppDirName = 'src/main/webapp'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
